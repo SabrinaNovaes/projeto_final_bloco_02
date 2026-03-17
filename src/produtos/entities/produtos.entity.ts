@@ -1,6 +1,7 @@
 import { Transform, TransformFnParams } from "class-transformer";
 import { IsDateString, IsNotEmpty, IsNumber, IsPositive, Length } from "class-validator";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Categoria } from "../../categorias/entities/categorias.entity";
 import { NumericTransformer } from "../../util/numerictransformer";
 
 @Entity({ name: "tb_produtos" }) 
@@ -16,9 +17,10 @@ export class Produto {
     nome: string;
 
     @Transform(({ value }: TransformFnParams) => value?.trim())
+    @IsNotEmpty({ message: "A Foto é obrigátoria!" })
     @Length (0, 500)
-    @Column({ nullable: true })
-    imagemUrl: string;
+    @Column({ nullable: false })
+    foto: string;
 
     @IsDateString()
     @IsNotEmpty()
@@ -29,4 +31,7 @@ export class Produto {
     @IsPositive({ message: "O preço deve ser um valor positivo!" })
     @Column( "decimal", { precision: 10, scale: 2, transformer: new NumericTransformer() })
     preco: number;
+
+    @ManyToOne(() => Categoria, (categoria) => categoria.produtos, { onDelete: "CASCADE" })
+    categoria: Categoria; 
 }
