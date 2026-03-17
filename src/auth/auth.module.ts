@@ -22,4 +22,4 @@ import { AuthController } from "./controllers/auth.controller";
     controllers: [AuthController],
     exports: [Bcrypt],
 })
-export class AuthModule { }
+export class AuthModule {}
