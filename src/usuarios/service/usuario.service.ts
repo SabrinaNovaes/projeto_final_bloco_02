@@ -20,7 +20,7 @@ export class UsuarioService {
         });
     }
 
-        async findAll(): Promise<any[]> {
+    async findAll(): Promise<any[]> {
 
         const usuarios = await this.usuarioRepository.find();
 

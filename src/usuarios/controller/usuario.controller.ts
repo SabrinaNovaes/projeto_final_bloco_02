@@ -2,8 +2,11 @@ import { Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Body,
 import { JwtAuthGuard } from "../../auth/guard/jwt-auth.guard";
 import { UsuarioService } from "../service/usuario.service";
 import { Usuario } from "../entities/usuario.entity";
+import { ApiTags, ApiBearerAuth } from "@nestjs/swagger";
 
+@ApiTags("usuario")
 @Controller("/usuarios")
+@ApiBearerAuth()
 export class UsuarioController{
 
     constructor(private readonly usuarioService: UsuarioService){ }

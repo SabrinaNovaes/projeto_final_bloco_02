@@ -1,34 +1,41 @@
+import { ApiProperty } from "@nestjs/swagger"
 import { Transform, TransformFnParams } from "class-transformer"
-import { IsNotEmpty, IsEmail, MinLength, IsDateString } from "class-validator"
+import { IsNotEmpty, IsEmail, MinLength, IsDateString, IsDate } from "class-validator"
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
 
 @Entity({name: "tb_usuarios"})
 export class Usuario {
 
+    @ApiProperty()
     @PrimaryGeneratedColumn() 
     id: number
 
+    @ApiProperty()
     @IsNotEmpty()
     @Transform(({ value }: TransformFnParams) => value?.trim())
     @Column({length: 255, nullable: false}) 
     nome: string
 
+    @ApiProperty()
     @IsEmail()
     @IsNotEmpty()
     @Transform(({ value }: TransformFnParams) => value?.trim())
     @Column({length: 255, nullable: false })
     usuario: string
 
+    @ApiProperty()
     @MinLength(8)
     @IsNotEmpty()
     @Transform(({ value }: TransformFnParams) => value?.trim())
     @Column({length: 255, nullable: false }) 
     senha: string
 
+    @ApiProperty()
     @Column({length: 5000 }) 
     foto: string
 
-    @IsDateString()
+    @ApiProperty()
+    @IsDate()
     @IsNotEmpty()
     @Column({ type: "date" })
     data_nascimento: Date

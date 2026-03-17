@@ -7,7 +7,7 @@ import { AppController } from "./app.controller";
 import { ProdService } from "./data/service/prod.service";
 import { CategoriaModule } from "./categorias/categorias.module";
 import { ProdutoModule } from "./produtos/produtos.module";
-
+import { AppService } from "./app.service";
 
 @Module({
   
@@ -24,6 +24,6 @@ import { ProdutoModule } from "./produtos/produtos.module";
     UsuarioModule
   ],
   controllers: [AppController],
-  providers: [],
+  providers: [AppService],
 })
 export class AppModule { }
