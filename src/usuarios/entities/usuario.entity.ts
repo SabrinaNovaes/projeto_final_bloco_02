@@ -34,9 +34,8 @@ export class Usuario {
     @Column({length: 5000 }) 
     foto: string
 
+    @IsDateString()
     @ApiProperty()
-    @IsDate()
-    @IsNotEmpty()
     @Column({ type: "date" })
     data_nascimento: Date
 }
