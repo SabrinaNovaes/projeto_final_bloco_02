@@ -14,7 +14,9 @@ export class ProdutoService {
     ) { }
 
     async findAll(): Promise<Produto[]> {
-        return this.produtoRepository.find();
+        return this.produtoRepository.find({
+            relations: { categoria: true }
+        });
     }
 
     async findById(id: number): Promise<Produto> {

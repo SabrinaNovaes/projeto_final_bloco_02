@@ -1,7 +1,9 @@
-import { Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Body, Put, Delete } from "@nestjs/common";
+import { Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Body, Put, Delete, UseGuards } from "@nestjs/common";
 import { Categoria } from "../entities/categorias.entity";
 import { CategoriaService } from "../service/categorias.service";
+import { JwtAuthGuard } from "../../auth/guard/jwt-auth.guard";
 
+@UseGuards(JwtAuthGuard)
 @Controller("/categorias")
 export class CategoriaController {
 

@@ -12,7 +12,9 @@ export class CategoriaService {
     ){}
 
     async findAll(): Promise<Categoria[]>{
-        return this.categoriaRepository.find();
+        return this.categoriaRepository.find({
+            relations: { produtos:true }
+        });
     }
 
     async findById(id: number): Promise<Categoria> {
